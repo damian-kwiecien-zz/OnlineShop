@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace OnlineShop
 {
@@ -23,6 +22,13 @@ namespace OnlineShop
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            /*bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                     "~/node_modules/core-js/client/shim.min.js",
+                     "~/node_modules/zone.js/dist/zone.js",
+                     "~/node_modules/systemjs/dist/system.src.js",
+                     "~/systemjs.config.js"));*/
+
         }
     }
 }
