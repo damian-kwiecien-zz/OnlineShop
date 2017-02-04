@@ -11,7 +11,14 @@ namespace OnlineShop.Controllers
             return View();
         }
 
-        public ActionResult Test()
+        public ActionResult He()
+        {
+            ViewBag.Title = "Test Page";
+
+            return View();
+        }
+
+        public ActionResult She()
         {
             ViewBag.Title = "Test Page";
 
