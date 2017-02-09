@@ -1,7 +1,8 @@
 ﻿using OnlineShop.Models;
 using System.Collections.Generic;
 using System.Web.Http;
-
+using System.Linq.Expressions;
+using System.Linq;
 
 namespace OnlineShop.Controllers
 {
@@ -12,25 +13,13 @@ namespace OnlineShop.Controllers
 
         public ProductsController(OnlineShopDbContext dbContext)
         {
-            this._dbContext = dbContext;
+            _dbContext = dbContext;
         }
         // GET: api/Products
-        public IEnumerable<string> Get()
+        public IEnumerable<string> Get(string target, string type)
         {
-
-            Product p = new Product()
-            {
-                Name = "Name",
-                Description = "Nope",
-                Details = "nope",
-                ImgUrl = "/",
-                Price = 0,
-                Target = Target.He,
-                Type = "Clothes"
-            };
-            _dbContext.Products.Add(p);
-            _dbContext.SaveChanges();
-            return new string[] { "value1", "value2", _dbContext.Products.ToString() };
+            _dbContext.Products.Where(p => (p.Target.ToString() == target) && (p.Type == type));
+            return new string[] { target, type };
         }
 
         // GET: api/Products/5
