@@ -113,11 +113,19 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -275,14 +283,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702091626517_InitialCreate.cs" />
-    <Compile Include="Migrations\201702091626517_InitialCreate.Designer.cs">
-      <DependentUpon>201702091626517_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201702111030254_InitialCreate.cs" />
+    <Compile Include="Migrations\201702111030254_InitialCreate.Designer.cs">
+      <DependentUpon>201702111030254_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702111129440_CreateNewProductAndBestProduct.cs" />
+    <Compile Include="Migrations\201702111129440_CreateNewProductAndBestProduct.Designer.cs">
+      <DependentUpon>201702111129440_CreateNewProductAndBestProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BestProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\NewProduct.cs" />
     <Compile Include="Models\OnlineShopDbContext.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="node_modules\selenium-webdriver\lib\test\data\Page.aspx.cs">
@@ -14077,8 +14091,11 @@
     <TypeScriptCompile Include="Scripts\app\main.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702091626517_InitialCreate.resx">
-      <DependentUpon>201702091626517_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702111030254_InitialCreate.resx">
+      <DependentUpon>201702111030254_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702111129440_CreateNewProductAndBestProduct.resx">
+      <DependentUpon>201702111129440_CreateNewProductAndBestProduct.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

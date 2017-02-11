@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
 
 namespace OnlineShop
 {
@@ -19,6 +15,11 @@ namespace OnlineShop
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            // Resolve No 'Access-Control-Allow-Origin' error!
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

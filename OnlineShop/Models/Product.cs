@@ -21,8 +21,12 @@
 
         public string ImgUrl { get; set; }
 
+        public Target Target { get; set; }
+
+        public string Category { get; set; }
+
         public string Type { get; set; }
 
-        public Target Target { get; set; }
+
     }
 }

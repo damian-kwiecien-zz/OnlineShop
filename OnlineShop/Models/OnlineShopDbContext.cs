@@ -6,6 +6,8 @@ namespace OnlineShop.Models
     public class OnlineShopDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<NewProduct> NewProducts { get; set; }
+        public DbSet<BestProduct> BestProducts { get; set; }
 
         public OnlineShopDbContext() : base("OnlineShopConnection")
         {
