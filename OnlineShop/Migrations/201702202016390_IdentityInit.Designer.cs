@@ -7,13 +7,13 @@ namespace OnlineShop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateNewProductAndBestProduct : IMigrationMetadata
+    public sealed partial class IdentityInit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateNewProductAndBestProduct));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(IdentityInit));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702111129440_CreateNewProductAndBestProduct"; }
+            get { return "201702202016390_IdentityInit"; }
         }
         
         string IMigrationMetadata.Source

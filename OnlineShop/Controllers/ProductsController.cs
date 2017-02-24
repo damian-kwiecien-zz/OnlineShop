@@ -15,12 +15,40 @@ namespace OnlineShop.Controllers
         {
             _dbContext = dbContext;
         }
-        // GET: api/Products
-        public IEnumerable<int> Get(string target, string category, string type)
+
+        // GET: api/Products/Ids/?target=...&category=...&type
+        [Route("api/products/ids")]
+        [HttpGet]
+        public IEnumerable<int> GetIds(string target, string category, string type)
         {
-            var productsIdList = _dbContext.Products.Where(p => (p.Target.ToString() == target) &&
-            (p.Category == category) && (p.Type == type)).Select(p => p.Id);
-            return productsIdList;
+            var productsIds = _dbContext.Products.Where(p => (p.Target.ToString() == target) &&
+            (p.Category == category) && (p.Type == type)).Select(p => p.Id).ToList();
+            return productsIds;
+        }
+
+        // GET: api/Products/Ids/?searchParameter=...
+        [Route("api/products/ids")]
+        [HttpGet]
+        public IEnumerable<int> GetIds(string searchParameter)
+        {
+            var productsIds = _dbContext.Products
+                .Where(p => p.Name.ToLower().Contains(searchParameter.ToLower())).Select(p => p.Id).ToList();
+            return productsIds;
+        }
+
+        // GET: api/Products/5
+        public IEnumerable<Product> Get(int id)
+        {
+            var product = _dbContext.Products.Where(p => p.Id == id).ToList();
+            return product;
+        }
+
+        // GET: api/Products/?ids=...    Example: api/Products/?ids=1,2,3
+        public IEnumerable<Product> Get(string ids)
+        {
+            var idList = ids.Split(',').Select(el => int.Parse(el)).ToList();
+            var products = _dbContext.Products.Where(p => idList.Contains(p.Id)).ToList();
+            return products;
         }
 
         [Route("api/products/new")]
@@ -42,11 +70,9 @@ namespace OnlineShop.Controllers
                     idList.Add(id);
             }
 
-            var newProducts = _dbContext.Products.Where(p => idList.Contains(p.Id));
+            var newProducts = _dbContext.Products.Where(p => idList.Contains(p.Id)).ToList();
             return newProducts;
         }
-
-
 
         [Route("api/products/best")]
         [HttpGet]
@@ -67,16 +93,8 @@ namespace OnlineShop.Controllers
                     idList.Add(id);
             }
 
-            var bestProducts = _dbContext.Products.Where(p => idList.Contains(p.Id));
+            var bestProducts = _dbContext.Products.Where(p => idList.Contains(p.Id)).ToList();
             return bestProducts;
-        }
-
-        // GET: api/Products/5
-        public IEnumerable<Product> Get(int id)
-        {
-            var product = _dbContext.Products.Where(p => p.Id == id);
-            return product;
-
         }
 
         // POST: api/Products

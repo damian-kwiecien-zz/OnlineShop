@@ -1,4 +1,6 @@
-﻿namespace OnlineShop.Models
+﻿using System.Collections.Generic;
+
+namespace OnlineShop.Models
 {
     public enum Target
     {
@@ -19,14 +21,18 @@
 
         public string Details { get; set; }
 
-        public string ImgUrl { get; set; }
-
         public Target Target { get; set; }
 
         public string Category { get; set; }
 
         public string Type { get; set; }
 
+        virtual public ICollection<ProductImage> ProductImages { get; set; }
+
+        public Product()
+        {
+            ProductImages = new List<ProductImage>();
+        }
 
     }
 }

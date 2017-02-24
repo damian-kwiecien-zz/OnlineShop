@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin.Security.OAuth;
+using Newtonsoft.Json;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace OnlineShop
 {
@@ -8,6 +8,9 @@ namespace OnlineShop
     {
         public static void Register(HttpConfiguration config)
         {
+            // Prevent circular reference in HTTP response json 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
@@ -16,9 +19,6 @@ namespace OnlineShop
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            // Resolve No 'Access-Control-Allow-Origin' error!
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
 
 
             config.Routes.MapHttpRoute(
