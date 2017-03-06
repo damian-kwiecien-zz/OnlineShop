@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using OnlineShop.ProductModels;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace OnlineShop.Models

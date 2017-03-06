@@ -65,6 +65,23 @@ namespace OnlineShop.Controllers
             };
         }
 
+        // GET api/Account/IsAuthenticated
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("IsAuthenticated")]
+        public bool IsAuthenticatede()
+        {
+            return true;
+        }
+
+        // GET api/Account/IsAuthenticatedAsAdmin
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [Route("IsAuthenticatedAsAdmin")]
+        public async Task<bool> IsAuthenticatedAsAdmin()
+        {
+            var roles = await _userManager.GetRolesAsync(User.Identity.GetUserId());
+            return roles.Contains("admin");
+        }
+
         // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()

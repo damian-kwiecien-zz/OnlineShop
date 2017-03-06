@@ -1,4 +1,5 @@
 ﻿using OnlineShop.Models;
+using OnlineShop.ProductModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,12 +7,12 @@ using System.Web.Http;
 
 namespace OnlineShop.Controllers
 {
-    public class ProductsController : ApiController
+    public class ProductController : ApiController
     {
 
         private readonly OnlineShopDbContext _dbContext;
 
-        public ProductsController(OnlineShopDbContext dbContext)
+        public ProductController(OnlineShopDbContext dbContext)
         {
             _dbContext = dbContext;
         }
