@@ -1,5 +1,7 @@
-﻿using OnlineShop.Models;
-using OnlineShop.ProductModels;
+﻿using OnlineShop.DTOs;
+using OnlineShop.Extensions;
+using OnlineShop.Models;
+using OnlineShop.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,12 @@ namespace OnlineShop.Controllers
     {
 
         private readonly OnlineShopDbContext _dbContext;
+        private readonly IProductService _productService;
 
-        public ProductController(OnlineShopDbContext dbContext)
+        public ProductController(OnlineShopDbContext dbContext, IProductService productService)
         {
             _dbContext = dbContext;
+            _productService = productService;
         }
 
         // GET: api/Products/Ids/?target=...&category=...&type
@@ -22,9 +26,7 @@ namespace OnlineShop.Controllers
         [HttpGet]
         public IEnumerable<int> GetIds(string target, string category, string type)
         {
-            var productsIds = _dbContext.Products.Where(p => (p.Target.ToString() == target) &&
-            (p.Category == category) && (p.Type == type)).Select(p => p.Id).ToList();
-            return productsIds;
+            return _productService.GetProductsIdsBy(target, category, type);
         }
 
         // GET: api/Products/Ids/?searchParameter=...
@@ -32,70 +34,41 @@ namespace OnlineShop.Controllers
         [HttpGet]
         public IEnumerable<int> GetIds(string searchParameter)
         {
-            var productsIds = _dbContext.Products
-                .Where(p => p.Name.ToLower().Contains(searchParameter.ToLower())).Select(p => p.Id).ToList();
-            return productsIds;
+            return _productService.GetProductsIdsBy(searchParameter);
         }
 
         // GET: api/Products/5
-        public IEnumerable<Product> Get(int id)
+        public ProductDTO Get(int id)
         {
-            var product = _dbContext.Products.Where(p => p.Id == id).ToList();
-            return product;
+            return _productService.GetProductBy(id);
         }
 
         // GET: api/Products/?ids=...    Example: api/Products/?ids=1,2,3
-        public IEnumerable<Product> Get(string ids)
+        public IEnumerable<ProductDTO> Get(string ids)
         {
             var idList = ids.Split(',').Select(el => int.Parse(el)).ToList();
-            var products = _dbContext.Products.Where(p => idList.Contains(p.Id)).ToList();
-            return products;
+            return _productService.GetProductsBy(idList);
         }
 
         [Route("api/products/new")]
         [HttpGet]
-        public IEnumerable<Product> GetNew()
+        public IEnumerable<ProductDTO> GetNew()
         {
-            Random rnd = new Random();
-            var lastId = _dbContext.NewProducts.OrderByDescending(p => p.Id).First().Id;
-            var idList = new List<int>();
-            int id;
-
-            while (idList.Count != 3)
-            {
-                id = rnd.Next(1, (lastId + 1)); // [a,b)
-
-                if (idList.Contains(id))
-                    continue;
-                else
-                    idList.Add(id);
-            }
-
-            var newProducts = _dbContext.Products.Where(p => idList.Contains(p.Id)).ToList();
-            return newProducts;
+            var ids = _dbContext.NewProducts.Select(p => p.Id).ToList();
+            ids.Shuffle();
+            ids.Take(3);
+            return _productService.GetProductsBy(ids);
         }
 
         [Route("api/products/best")]
         [HttpGet]
-        public IEnumerable<Product> GetBest()
+        public IEnumerable<ProductDTO> GetBest()
         {
             Random rnd = new Random();
-            var lastId = _dbContext.BestProducts.OrderByDescending(p => p.Id).First().Id;
-            var idList = new List<int>();
-            int id;
-
-            while (idList.Count != 3)
-            {
-                id = rnd.Next(1, (lastId + 1)); // [a,b)
-
-                if (idList.Contains(id))
-                    continue;
-                else
-                    idList.Add(id);
-            }
-
-            var bestProducts = _dbContext.Products.Where(p => idList.Contains(p.Id)).ToList();
-            return bestProducts;
+            var ids = _dbContext.BestProducts.Select(p => p.Id).ToList();
+            ids.Shuffle();
+            ids.Take(3);
+            return _productService.GetProductsBy(ids);
         }
 
         // POST: api/Products
@@ -112,5 +85,9 @@ namespace OnlineShop.Controllers
         public void Delete(int id)
         {
         }
+
+
+
+
     }
 }

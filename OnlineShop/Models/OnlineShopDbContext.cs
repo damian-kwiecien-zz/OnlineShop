@@ -1,4 +1,4 @@
-﻿using OnlineShop.ProductModels;
+﻿using OnlineShop.Entities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
@@ -12,6 +12,7 @@ namespace OnlineShop.Models
 
         public OnlineShopDbContext() : base("OnlineShopConnection")
         {
+            base.Configuration.LazyLoadingEnabled = true;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

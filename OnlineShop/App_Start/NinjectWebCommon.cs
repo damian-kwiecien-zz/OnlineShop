@@ -8,6 +8,7 @@ namespace OnlineShop.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using Services;
     using System;
     using System.Web;
 
@@ -62,6 +63,7 @@ namespace OnlineShop.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<OnlineShopDbContext>().To<OnlineShopDbContext>();
+            kernel.Bind<IProductService>().To<ProductService>();
         }
     }
 }
