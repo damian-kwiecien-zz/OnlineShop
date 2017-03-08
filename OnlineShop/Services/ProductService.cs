@@ -28,6 +28,11 @@ namespace OnlineShop.Services
             return Mapper.Map<IEnumerable<ProductDTO>>(products);
         }
 
+        public IEnumerable<int> GetProductsIds()
+        {
+            return _dbContext.Products.Select(p => p.Id).ToList();
+        }
+
         public IEnumerable<int> GetProductsIdsBy(string searchParameter)
         {
             var productsIds = _dbContext.Products

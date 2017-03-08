@@ -9,6 +9,8 @@ namespace OnlineShop.Services
 
         IEnumerable<ProductDTO> GetProductsBy(IEnumerable<int> ids);
 
+        IEnumerable<int> GetProductsIds();
+
         IEnumerable<int> GetProductsIdsBy(string target, string category, string type);
 
         IEnumerable<int> GetProductsIdsBy(string searchParameter);
