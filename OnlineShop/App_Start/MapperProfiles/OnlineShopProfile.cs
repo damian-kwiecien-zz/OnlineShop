@@ -10,7 +10,9 @@ namespace OnlineShop.App_Start.MapperProfiles
         public OnlineShopProfile()
         {
             MapProductToProductDTO();
-
+            MapPurchaseDTOToPurchase();
+            MapShoppingCartItemDTOToShoppingCartItem();
+            MapPurchaserDataDTOToPurchaserData();
         }
 
         private void MapProductToProductDTO()
@@ -24,6 +26,21 @@ namespace OnlineShop.App_Start.MapperProfiles
                 opts => opts.MapFrom(src => src.Type.Name))
                 .ForMember(dest => dest.ImagesUrl,
                 opts => opts.MapFrom(src => src.Image.Select(img => img.ImgUrl)));
+        }
+
+        private void MapPurchaseDTOToPurchase()
+        {
+            CreateMap<PurchaseDTO, Purchase>();
+        }
+
+        private void MapShoppingCartItemDTOToShoppingCartItem()
+        {
+            CreateMap<ShoppingCartItemDTO, ShoppingCartItem>();
+        }
+
+        private void MapPurchaserDataDTOToPurchaserData()
+        {
+            CreateMap<PurchaserDataDTO, PurchaserData>();
         }
     }
 }

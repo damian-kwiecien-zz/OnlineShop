@@ -13,10 +13,7 @@ namespace OnlineShop.Entities
 
         public bool Pending { get; set; }
 
-        public string UserId { get; set; }
-
-        //[ForeignKey("UserId")]
-        //virtual public ApplicationUser User { get; set; }
+        virtual public PurchaserData PurchaserData { get; set; }
 
         virtual public ICollection<ShoppingCartItem> ShoppingCartItem { get; set; }
 

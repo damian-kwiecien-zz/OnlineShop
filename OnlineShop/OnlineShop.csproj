@@ -324,12 +324,15 @@
     <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\PurchaseDTO.cs" />
+    <Compile Include="DTOs\PurchaserDataDTO.cs" />
+    <Compile Include="DTOs\ShoppingCartItemDTO.cs" />
     <Compile Include="Entities\BestProduct.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Image.cs" />
     <Compile Include="Entities\NewProduct.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Purchase.cs" />
+    <Compile Include="Entities\PurchaserData.cs" />
     <Compile Include="Entities\ShoppingCartItem.cs" />
     <Compile Include="Entities\Target.cs" />
     <Compile Include="Entities\Type.cs" />
@@ -359,7 +362,11 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\IPurchaseService.cs" />
+    <Compile Include="Services\IShoppingCartItemService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\PurchaseService.cs" />
+    <Compile Include="Services\ShoppingCartItemService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

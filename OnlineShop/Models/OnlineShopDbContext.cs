@@ -10,9 +10,12 @@ namespace OnlineShop.Models
         public DbSet<NewProduct> NewProducts { get; set; }
         public DbSet<BestProduct> BestProducts { get; set; }
 
+        public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<PurchaserData> PurchaserDatas { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
         public OnlineShopDbContext() : base("OnlineShopConnection")
         {
-            base.Configuration.LazyLoadingEnabled = true;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
