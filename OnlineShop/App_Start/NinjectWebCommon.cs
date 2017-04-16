@@ -64,6 +64,7 @@ namespace OnlineShop.App_Start
         {
             kernel.Bind<OnlineShopDbContext>().To<OnlineShopDbContext>();
             kernel.Bind<IProductService>().To<ProductService>();
+            kernel.Bind<IPurchaseService>().To<PurchaseService>();
         }
     }
 }

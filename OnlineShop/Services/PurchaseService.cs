@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNet.Identity.Owin;
 using OnlineShop.DTOs;
 using OnlineShop.Entities;
 using OnlineShop.Models;
 using System;
 using System.Linq;
-using System.Web;
 
 namespace OnlineShop.Services
 {
@@ -13,24 +11,10 @@ namespace OnlineShop.Services
     {
         private readonly OnlineShopDbContext _dbContext;
         private readonly ProductService _productService;
-        private ApplicationUserManager _userManager;
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.Current.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        public PurchaseService(OnlineShopDbContext dbContext, ApplicationUserManager userManager, ProductService productService)
+        public PurchaseService(OnlineShopDbContext dbContext, ProductService productService)
         {
             _dbContext = dbContext;
-            UserManager = userManager;
         }
 
         public void AddPurchase(PurchaseDTO dto)
@@ -40,6 +24,7 @@ namespace OnlineShop.Services
 
             var purchase = Mapper.Map<PurchaseDTO, Purchase>(dto);
             purchase.Pending = true;
+            purchase.Date = DateTime.Now;
 
             foreach (var el in dto.ShoppingCartItemDTOs)
             {
@@ -65,7 +50,7 @@ namespace OnlineShop.Services
                 cost += el.Quantity * _dbContext.Products.Where(p => p.Id == el.ProductId).First().Price;
             }
             if (dto.ProductsCost != cost)
-                throw new ArgumentException("Invalid function parameter");
+                throw new ArgumentException("Invalid purchase cost parameter");
         }
     }
 }

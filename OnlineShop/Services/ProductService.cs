@@ -42,7 +42,7 @@ namespace OnlineShop.Services
 
         public IEnumerable<int> GetProductsIdsBy(string target, string category, string type)
         {
-            var productsIds = _dbContext.Products.Where(p => (p.Target.ToString() == target) &&
+            var productsIds = _dbContext.Products.Where(p => (p.Target.Name == target) &&
             (p.Category.Name == category) && (p.Type.Name == type)).Select(p => p.Id).ToList();
             return productsIds;
         }

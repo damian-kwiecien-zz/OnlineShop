@@ -51,8 +51,8 @@ namespace OnlineShop.Controllers
         {
             var ids = _productService.GetProductsIds() as List<int>;
             ids.Shuffle();
-            ids.Take(3);
-            return _productService.GetProductsBy(ids);
+            var ids2 = ids.Take(3);
+            return _productService.GetProductsBy(ids2);
         }
 
         [Route("api/product/best")]
@@ -62,25 +62,9 @@ namespace OnlineShop.Controllers
 
             var ids = _productService.GetProductsIds() as List<int>;
             ids.Shuffle();
-            ids.Take(3);
-            return _productService.GetProductsBy(ids);
+            var ids2 = ids.Take(3);
+            return _productService.GetProductsBy(ids2);
         }
-
-        // POST: api/Products
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/Products/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Products/5
-        public void Delete(int id)
-        {
-        }
-
 
 
 

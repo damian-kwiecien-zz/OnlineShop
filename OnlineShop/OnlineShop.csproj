@@ -353,6 +353,10 @@
     <Compile Include="Migrations\201703062054564_Purchase.Designer.cs">
       <DependentUpon>201703062054564_Purchase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703111636383_CreatePurchase.cs" />
+    <Compile Include="Migrations\201703111636383_CreatePurchase.Designer.cs">
+      <DependentUpon>201703111636383_CreatePurchase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -363,10 +367,8 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\IPurchaseService.cs" />
-    <Compile Include="Services\IShoppingCartItemService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\PurchaseService.cs" />
-    <Compile Include="Services\ShoppingCartItemService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -428,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703062054564_Purchase.resx">
       <DependentUpon>201703062054564_Purchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703111636383_CreatePurchase.resx">
+      <DependentUpon>201703111636383_CreatePurchase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

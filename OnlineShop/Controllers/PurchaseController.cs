@@ -1,43 +1,27 @@
-﻿using OnlineShop.Services;
-using System.Collections.Generic;
+﻿using OnlineShop.DTOs;
+using OnlineShop.Services;
 using System.Web.Http;
 
 namespace OnlineShop.Controllers
 {
     public class PurchaseController : ApiController
     {
-        private readonly IProductService _productService;
+        private readonly IPurchaseService _purchaseService;
 
-        public PurchaseController(IProductService productService)
+        public PurchaseController(IPurchaseService purchaseService)
         {
-            _productService = productService;
-        }
-
-        // GET: api/Purchase
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET: api/Purchase/5
-        public string Get(int id)
-        {
-            return "value";
+            _purchaseService = purchaseService;
         }
 
         // POST: api/Purchase
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]PurchaseDTO dto)
         {
-        }
-
-        // PUT: api/Purchase/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Purchase/5
-        public void Delete(int id)
-        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _purchaseService.AddPurchase(dto);
+            return Ok();
         }
     }
 }
